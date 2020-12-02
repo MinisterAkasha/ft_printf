@@ -6,7 +6,7 @@
 #    By: akasha <akasha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/25 14:45:49 by akasha            #+#    #+#              #
-#    Updated: 2020/12/02 21:38:23 by akasha           ###   ########.fr        #
+#    Updated: 2020/12/02 21:45:01 by akasha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ OFILE =	$(SRC:%.c=%.o)
 
 OBJ = $(addprefix $(OBJ_DIR), $(OFILE))
 
-all: $(NAME)
+all: $(OBJ_DIR) $(NAME)
+
+$(OBJ_DIR):
+	mkdir -p $(OBJ_DIR)
 
 $(NAME): $(OBJ)
-	mkdir - p $(OBJ_DIR)
 	make -C $(LIBFT)
 	cp $(LIBFT)$(LIBFT_A) .
 	mv $(LIBFT_A) $(NAME)
