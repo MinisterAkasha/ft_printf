@@ -6,7 +6,7 @@
 #    By: akasha <akasha@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/11/25 14:45:49 by akasha            #+#    #+#              #
-#    Updated: 2020/11/29 18:01:53 by akasha           ###   ########.fr        #
+#    Updated: 2020/12/02 21:38:23 by akasha           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,17 +37,13 @@ OBJ = $(addprefix $(OBJ_DIR), $(OFILE))
 
 all: $(NAME)
 
-$(NAME): lib dir $(OBJ)
+$(NAME): $(OBJ)
+	mkdir - p $(OBJ_DIR)
+	make -C $(LIBFT)
 	cp $(LIBFT)$(LIBFT_A) .
 	mv $(LIBFT_A) $(NAME)
 	ar rc $(NAME) $(addprefix $(OBJ_DIR), $(OFILE))
 	ranlib $@
-
-dir:
-	mkdir -p $(OBJ_DIR)
-
-lib:
-	make -C $(LIBFT)
 
 $(OBJ): $(CFIND)
 	make $(OFILE)
